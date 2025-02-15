@@ -1,11 +1,17 @@
 import { renderHomePage } from "./pages/HomePage";
 import { renderCookiePolicy } from "./pages/CookiePolicy";
+import { renderTermsAndConditions } from "./pages/TermsConditions"
 import { render404 } from "./pages/404";
+import { renderLogin } from "./pages/Login"
+import { renderRegister } from "./pages/Register"
 
 const routes: { [key: string]: () => string } =
 {
 	"/": renderHomePage,
 	"/cookie-policy": renderCookiePolicy,
+	"/terms-conditions": renderTermsAndConditions,
+	"/login": renderLogin,
+	"/register": renderRegister,
 
 };
 
