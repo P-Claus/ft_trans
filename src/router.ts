@@ -1,30 +1,33 @@
 import { renderHomePage } from "./pages/HomePage";
 import { renderCookiePolicy } from "./pages/CookiePolicy";
+import { render404 } from "./pages/404";
 
-const routes: { [key: string]: () => string } = {
-    "/": renderHomePage,
-    "/cookie-policy": renderCookiePolicy,
+const routes: { [key: string]: () => string } =
+{
+	"/": renderHomePage,
+	"/cookie-policy": renderCookiePolicy,
+
 };
 
-export const navigateTo = (url: string) => {
-    history.pushState({}, "", url);
-    router(); // Re-render the page
+export const navigateTo = (url: string) =>
+{
+	history.pushState({}, "", url);
+	router();
 };
 
-export const router = () => {
-    console.log("🚀 Router function is running!");
-    const path = window.location.pathname;
-    console.log("The current path is:", path);
+export const router = () =>
+{
+	const path = window.location.pathname;
 
-    const app = document.getElementById("app");
-    if (!app) {
-        console.error("❌ ERROR: <div id='app'> NOT FOUND!");
-        return;
-    }
+	const app = document.getElementById("app");
+	if (!app)
+	{
+		console.error("ERROR: <div id='app'> NOT FOUND!");
+		return;
+	}
 
-    const page = routes[path] ? routes[path]() : "<h1>404 - Page Not Found</h1>";
-    app.innerHTML = page;
+	const page = routes[path] ? routes[path]() : render404();
+	app.innerHTML = page;
 };
 
-// Handle browser back/forward navigation
 window.addEventListener("popstate", router);
