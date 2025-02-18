@@ -5,7 +5,7 @@ export function renderTermsAndConditions(): string {
     return `
   	${renderNavBar()}
     <section class="bg-primary-background text-white">
-		<div class="container px-5 md:px-10">
+		<div class="container py-8 px-5 md:px-10">
 			<h1 class="mb-4 pt-10 text-4xl font-extrabold leading-none tracking-tight md:text-5xl">Terms and Conditions of Retropong</h1>
 				<h2 class="mb-4 mt-6 text-4xl">1. Definitions</h2>
 					<p class="mb-6 text-lg lg:text-xl md:px-10"><span class="underline">Platform</span>: Refers to Retropong.<br>
