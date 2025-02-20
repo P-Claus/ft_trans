@@ -1,6 +1,9 @@
 //import axios from 'axios'
 import { renderNavBar } from '../components/NavBar'
 import { renderFooter } from '../components/Footer'
+import { emailValidation } from '../../tools/dataValidation.ts'
+import { passwordValidation } from '../../tools/dataValidation.ts';
+import { usernameValidation } from '../../tools/dataValidation.ts';
 
 // export const sendDataToBackend = async (email: string, password: string, username: string) => {
 // 	const { data } = await axios.post('http://localhost:1919/register', {
@@ -32,7 +35,7 @@ export const renderRegister = (): string => {
 						<input class="h-10 rounded text-black" type="password" id="password" name="password">
 						<label for="passwordConfirmation">Retype password</label>
 						<input class="h-10 rounded text-black" type="password" id="passwordConfirmation" name="passwordConfirmation">
-						<a data-link ><button type="submit" class=" mt-10 text-xl md:text-base text-white bg-primary my-8 py-3 px-6 rounded-md flex items-center whitespace-nowrap hover:text-primary hover:bg-white w-full h-10 justify-center">Register</button></a>
+						<button type="submit" class=" mt-10 text-xl md:text-base text-white bg-primary my-8 py-3 px-6 rounded-md flex items-center whitespace-nowrap hover:text-primary hover:bg-white w-full h-10 justify-center">Register</button>
 					</form>
 			</div>
 		</div>
@@ -40,30 +43,21 @@ export const renderRegister = (): string => {
 	${renderFooter()}
   `;
 }
-//
-// addEventListener("DOMContentLoaded", () => {
-// 	console.log("The DOM has been loaded");
-//
-// 	document.getElementById("registerForm").addEventListener("submit", async (e) => {
-// 		e.preventDefault();
-//
-// 		const email = document.getElementById("email").value;
-// 		const password = document.getElementById("password").value;
-// 		const confirmedPassword = document.getElementById("passwordConfirmation").value;
-// 		const username = document.getElementById("username").value;
-//
-// 		if (password !== confirmedPassword)
-// 		{
-// 			alert("Teh passwords don't match!");
-// 			throw new Error("The passwords don't match");
-// 		}
-//
-// 		console.log("The email is: ", email);
-// 		console.log("The password is: ", password);
-// 		console.log("The username is: ", username);
-//
-// 		sendDataToBackend(email, password, username);
-//
-// 	})
-//
-// })
+
+window.addEventListener("DOMContentLoaded", () => {
+	const form = document.getElementById("registerForm") as HTMLFormElement;
+
+	form.addEventListener("submit", async (e) => {
+		e.preventDefault();
+		const email = (document.getElementById("email") as HTMLInputElement).value;
+		const password = (document.getElementById("password") as HTMLInputElement).value;
+		const passwordConfirmation = (document.getElementById("passwordConfirmation") as HTMLInputElement).value;
+		const username = (document.getElementById("username") as HTMLInputElement).value;
+
+		emailValidation(email);
+		passwordValidation(password, passwordConfirmation);
+		usernameValidation(username);
+	})
+})
+
+// export const sendDataToBackend = async (email: string, password: string, username: string) => {
