@@ -1,9 +1,6 @@
 //import axios from 'axios'
 import { renderNavBar } from '../components/NavBar'
 import { renderFooter } from '../components/Footer'
-import { emailValidation } from '../../tools/dataValidation.ts'
-import { passwordValidation } from '../../tools/dataValidation.ts';
-import { usernameValidation } from '../../tools/dataValidation.ts';
 
 // export const sendDataToBackend = async (email: string, password: string, username: string) => {
 // 	const { data } = await axios.post('http://localhost:1919/register', {
@@ -26,7 +23,7 @@ export const renderRegister = (): string => {
 			<div class="px-6 flex flex-col items-center bg-primary-background rounded-xl w-96">
 					<img class="h-28 mt-10 mb-10" src="/pong-logo-1.svg"></img>
 					<h2 class="mb-5 px-10 text-center">Enter your email and provide a password to create an account.</h2>
-					<form class="flex flex-col gap-3 mt-4 mb-10 w-72" id="registerForm">
+					<form class="flex flex-col gap-3 mt-4 w-72" id="registerForm">
 						<label for="email">Email</label>
 						<input class="h-10 rounded text-black" type="email" id="email" name="email">
 						<label for="username">Username</label>
@@ -37,27 +34,12 @@ export const renderRegister = (): string => {
 						<input class="h-10 rounded text-black" type="password" id="passwordConfirmation" name="passwordConfirmation">
 						<button type="submit" class=" mt-10 text-xl md:text-base text-white bg-primary my-8 py-3 px-6 rounded-md flex items-center whitespace-nowrap hover:text-primary hover:bg-white w-full h-10 justify-center">Register</button>
 					</form>
+					<p class="mb-10" data-link>Already have an account? Click <a class="underline text-primary pointer" href="/login" data-link>here</a> to login</p>
 			</div>
 		</div>
 	  </section>
 	${renderFooter()}
   `;
 }
-
-window.addEventListener("DOMContentLoaded", () => {
-	const form = document.getElementById("registerForm") as HTMLFormElement;
-
-	form.addEventListener("submit", async (e) => {
-		e.preventDefault();
-		const email = (document.getElementById("email") as HTMLInputElement).value;
-		const password = (document.getElementById("password") as HTMLInputElement).value;
-		const passwordConfirmation = (document.getElementById("passwordConfirmation") as HTMLInputElement).value;
-		const username = (document.getElementById("username") as HTMLInputElement).value;
-
-		emailValidation(email);
-		passwordValidation(password, passwordConfirmation);
-		usernameValidation(username);
-	})
-})
 
 // export const sendDataToBackend = async (email: string, password: string, username: string) => {

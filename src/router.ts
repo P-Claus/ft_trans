@@ -6,6 +6,7 @@ import { render404 } from "./pages/404";
 import { renderLogin } from "./pages/Login"
 import { renderRegister } from "./pages/Register"
 import { renderBackend } from "./pages/Backend";
+import { attachLoginPageEventListeners, attachRegisterPageEventListeners } from "../tools/EventListeners";
 
 const routes: { [key: string]: () => string } =
 {
@@ -14,7 +15,7 @@ const routes: { [key: string]: () => string } =
 	"/terms-conditions": renderTermsAndConditions,
 	"/privacy-policy": renderPrivacyPolicy,
 	"/login": renderLogin,
-	"/register": renderRegister,
+	"/register": renderRegister, 
 	"/backend": renderBackend,
 
 };
@@ -38,6 +39,12 @@ export const router = () =>
 
 	const page = routes[path] ? routes[path]() : render404();
 	app.innerHTML = page;
+
+	if (path === "/register")
+		attachRegisterPageEventListeners();
+	if (path === "/login")
+		attachLoginPageEventListeners();
+
 };
 
 window.addEventListener("popstate", router);
