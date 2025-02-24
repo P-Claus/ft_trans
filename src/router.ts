@@ -5,8 +5,12 @@ import { renderPrivacyPolicy } from "./pages/PrivacyPolicy"
 import { render404 } from "./pages/404";
 import { renderLogin } from "./pages/Login"
 import { renderRegister } from "./pages/Register"
-import { renderBackend } from "./pages/Backend";
-import { attachLoginPageEventListeners, attachRegisterPageEventListeners } from "../tools/EventListeners";
+import { renderDashboard} from "./pages/Dashboard";
+import { attachLoginPageEventListeners, attachRegisterPageEventListeners, attachNavbarEventListeners } from "../tools/EventListeners";
+import { renderMatchMaking } from "./pages/Matchmaking";
+import { renderPofile } from "./pages/Profile";
+import { renderTournament } from "./pages/Tournament";
+import { renderStats } from "./pages/Stats";
 
 const routes: { [key: string]: () => string } =
 {
@@ -16,7 +20,11 @@ const routes: { [key: string]: () => string } =
 	"/privacy-policy": renderPrivacyPolicy,
 	"/login": renderLogin,
 	"/register": renderRegister, 
-	"/backend": renderBackend,
+	"/dashboard": renderDashboard,
+	"/matchmaking": renderMatchMaking,
+	"/profile": renderPofile,
+	"/tournament": renderTournament,
+	"/stats": renderStats,
 
 };
 
@@ -39,6 +47,8 @@ export const router = () =>
 
 	const page = routes[path] ? routes[path]() : render404();
 	app.innerHTML = page;
+
+	attachNavbarEventListeners();
 
 	if (path === "/register")
 		attachRegisterPageEventListeners();

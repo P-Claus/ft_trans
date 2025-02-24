@@ -9,7 +9,7 @@ module.exports = {
 			fontFamily: {
 				roboto: ["Roboto", "sans-serif"],
 			},
-			colors: { 'primary-background': '#0E0012', 'primary': '#6D43FF' },
+			colors: { 'primary-background': '#0E0012', 'secondary-bg': '#1A0021', 'primary': '#6D43FF', 'primary-faded': '#6d43ff80' },
 			container: {
 				center: true,
 			},
@@ -25,6 +25,10 @@ module.exports = {
 
 			},
 		},
+		safelist: [
+			"shadow-xl",
+			"shadow-indigo-500/50"
+		],
 	},
 	plugins: [],
 };

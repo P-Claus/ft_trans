@@ -53,3 +53,23 @@ export const attachLoginPageEventListeners = () => {
 		passwordValidation(password);
 	})
 }
+
+export const attachNavbarEventListeners = () => {
+	console.log("Started looking for the navbar...");
+
+	const mobileMenuButton = document.querySelector(".mobile-menu-button");
+	const mobileMenu = document.querySelector(".navigation-menu");
+
+	const path = window.location.pathname.substring(1);
+
+	const dashboardTitle = document.getElementById("dashboard-title");
+	if (dashboardTitle)
+		dashboardTitle.innerHTML = path[0].toUpperCase() + path.slice(1);
+
+	console.log("Attaching the eventlistener to the nav menu");
+	if (mobileMenuButton)
+		mobileMenuButton.addEventListener("click", () => {
+			if (mobileMenu)
+				mobileMenu.classList.toggle("hidden");
+		})
+}
